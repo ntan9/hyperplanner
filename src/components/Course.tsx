@@ -2,6 +2,7 @@ import React from 'react'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
+import { fade } from '@material-ui/core/styles/colorManipulator'
 import {
   makeStyles,
   responsiveFontSizes,
@@ -10,6 +11,7 @@ import {
 } from '@material-ui/core/styles'
 import EditIcon from './EditIcon'
 import DeleteIcon from './DeleteIcon'
+import CourseCheckbox from './CourseCheckbox'
 
 // Color constants
 const PINK = '#e91e63' // Major (Requirement)
@@ -29,34 +31,7 @@ let theme = createMuiTheme({
 theme = responsiveFontSizes(theme)
 
 const useStyles = makeStyles(() => ({
-  codeText: {
-    color: '#FFFFFF',
-    [theme.breakpoints.down('md')]: {
-      fontSize: theme.spacing(1.25),
-    },
-    [theme.breakpoints.down('lg')]: {
-      fontSize: theme.spacing(1.4),
-    },
-  },
-  titleText: {
-    color: '#FFFFFF',
-    [theme.breakpoints.down('md')]: {
-      fontSize: theme.spacing(1.25),
-    },
-    [theme.breakpoints.down('lg')]: {
-      fontSize: theme.spacing(1.4),
-    },
-  },
-  creditText: {
-    color: '#FFFFFF',
-    [theme.breakpoints.down('md')]: {
-      fontSize: theme.spacing(1.25),
-    },
-    [theme.breakpoints.down('lg')]: {
-      fontSize: theme.spacing(1.4),
-    },
-  },
-  writText: {
+  text: {
     color: '#FFFFFF',
     [theme.breakpoints.down('md')]: {
       fontSize: theme.spacing(1.25),
@@ -100,6 +75,7 @@ const getCourseColor = (type: string): string => {
 }
 
 interface courseProps {
+  active: boolean
   code: string
   title: string
   credits: number
@@ -111,6 +87,7 @@ interface courseProps {
 }
 
 function Course({
+  active,
   code,
   title,
   credits,
@@ -121,9 +98,25 @@ function Course({
   showIcons,
 }: courseProps): JSX.Element {
   const classes = useStyles()
+  const courseAlpha = active ? 1 : 0.2
+
+  let checkboxPlaceholder = (
+    <CourseCheckbox
+      active
+      functional={false}
+      code=""
+      title=""
+      credits={0}
+      type=""
+      campus=""
+      writInten={false}
+      term=""
+    />
+  )
 
   let editIconPlaceholder = (
     <EditIcon
+      active
       functional={false}
       code=""
       title=""
@@ -140,9 +133,23 @@ function Course({
 
   // If false, icons don't have click functionality (for logged out viewers)
   if (showIcons) {
+    checkboxPlaceholder = (
+      <CourseCheckbox
+        active={active}
+        functional
+        code={code}
+        title={title}
+        credits={credits}
+        type={type}
+        campus={campus}
+        writInten={writInten}
+        term={term}
+      />
+    )
     editIconPlaceholder = (
       <EditIcon
         functional
+        active={active}
         code={code}
         title={title}
         credits={credits}
@@ -181,7 +188,7 @@ function Course({
     placeholderGrid = (
       <Grid item xs={codeLength as 1 | 2} zeroMinWidth>
         <MuiThemeProvider theme={theme}>
-          <Typography variant="h6" className={classes.writText} noWrap>
+          <Typography variant="h6" className={classes.text} noWrap>
             <b>{placeholder}</b>
           </Typography>
         </MuiThemeProvider>
@@ -192,7 +199,7 @@ function Course({
   return (
     <Paper
       style={{
-        backgroundColor: getCourseColor(type),
+        backgroundColor: fade(getCourseColor(type), courseAlpha),
         marginTop: 5,
         marginBottom: 5,
         display: 'flex',
@@ -203,17 +210,20 @@ function Course({
         justify="space-between"
         style={{
           display: 'flex',
-        }}>
-        <Grid item xs={3} zeroMinWidth>
+        }}
+        xs={12}
+        zeroMinWidth>
+        {checkboxPlaceholder}
+        <Grid item xs={2} zeroMinWidth>
           <MuiThemeProvider theme={theme}>
-            <Typography variant="h6" className={classes.codeText} noWrap>
+            <Typography variant="h6" className={classes.text} noWrap>
               <b>{code}</b>
             </Typography>
           </MuiThemeProvider>
         </Grid>
         <Grid item xs={titleLength as 4 | 6} zeroMinWidth>
           <MuiThemeProvider theme={theme}>
-            <Typography variant="h6" className={classes.titleText} noWrap>
+            <Typography variant="h6" className={classes.text} noWrap>
               {title}
             </Typography>
           </MuiThemeProvider>
@@ -221,7 +231,7 @@ function Course({
         {placeholderGrid}
         <Grid item xs={1} zeroMinWidth>
           <MuiThemeProvider theme={theme}>
-            <Typography variant="h6" className={classes.creditText} noWrap>
+            <Typography variant="h6" className={classes.text} noWrap>
               {credits}
             </Typography>
           </MuiThemeProvider>
