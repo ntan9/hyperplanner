@@ -308,51 +308,255 @@
     "core": {
       "pre": {
         "courses": [
-          { "code": "BIOL023", "title": "Biology Laboratory" },
-          { "code": "BIOL052", "title": "Introduction to Biology" },
-          { "code": "CHEM023A", "title": "Chemistry in the Modern World I" },
-          { "code": "CHEM023B", "title": "Chemistry in the Modern World II" },
-          { "code": "CHEM024", "title": "Chemistry Laboratory" },
-          { "code": "CSCI005", "title": "Introduction to Computer Science" },
-          { "code": "ENGR079", "title": "Introduction to Engineering Systems" },
-          { "code": "HSA010", "title": "Critical Inquiry" },
-          { "code": "MATH030G/MATH030B", "title": "Calculus" },
-          { "code": "MATH035", "title": "Probability and Statistics" },
-          { "code": "MATH040", "title": "Introduction to Linear Algebra" },
+          {
+            "code": "BIOL023",
+            "title": "Biology Laboratory",
+            "prereq": ["CHEM024"],
+            "coreq": [],
+            "next": [16]
+          },
+          {
+            "code": "BIOL052",
+            "title": "Introduction to Biology",
+            "prereq": ["CHEM023A", "CSCI005"],
+            "coreq": [],
+            "next": []
+          },
+          {
+            "code": "CHEM023A",
+            "title": "Chemistry in the Modern World I",
+            "prereq": [],
+            "coreq": [],
+            "next": [1, 3]
+          },
+          {
+            "code": "CHEM023B",
+            "title": "Chemistry in the Modern World II",
+            "prereq": ["CHEM023A"],
+            "coreq": [],
+            "next": []
+          },
+          {
+            "code": "CHEM024",
+            "title": "Chemistry Laboratory",
+            "prereq": [],
+            "coreq": [],
+            "next": [0]
+          },
+          {
+            "code": "CSCI005",
+            "title": "Introduction to Computer Science",
+            "prereq": [],
+            "coreq": [],
+            "next": [1]
+          },
+          {
+            "code": "ENGR079",
+            "title": "Introduction to Engineering Systems",
+            "prereq": ["MATH045", "PHYS024"],
+            "coreq": [],
+            "next": []
+          },
+          {
+            "code": "HSA010",
+            "title": "Critical Inquiry",
+            "prereq": ["WRIT001"],
+            "coreq": [],
+            "next": []
+          },
+          {
+            "code": "MATH030G/MATH030B",
+            "title": "Calculus",
+            "prereq": [],
+            "coreq": [],
+            "next": [10]
+          },
+          {
+            "code": "MATH035",
+            "title": "Probability and Statistics",
+            "prereq": [],
+            "coreq": [],
+            "next": [11]
+          },
+          {
+            "code": "MATH040",
+            "title": "Introduction to Linear Algebra",
+            "prereq": ["MATH030"],
+            "coreq": [],
+            "next": [12]
+          },
           {
             "code": "MATH045",
-            "title": "Introduction to Differential Equations"
+            "title": "Introduction to Differential Equations",
+            "prereq": ["MATH035"],
+            "coreq": [],
+            "next": [6, 13]
           },
-          { "code": "MATH060", "title": "Multivariable Calculus" },
+          {
+            "code": "MATH060",
+            "title": "Multivariable Calculus",
+            "prereq": ["MATH040"],
+            "coreq": [],
+            "next": []
+          },
           {
             "code": "MATH065",
-            "title": "Differential Equations/Linear Algebra"
+            "title": "Differential Equations/Linear Algebra",
+            "prereq": ["MATH045"],
+            "coreq": [],
+            "next": []
           },
-          { "code": "PHYS023", "title": "Special Relativity" },
-          { "code": "PHYS024", "title": "Mechanics and Wave Motion" },
-          { "code": "PHYS050", "title": "Physics Laboratory" },
-          { "code": "PHYS051", "title": "Electromagnetic Theory and Optics" },
-          { "code": "WRIT001", "title": "Introduction to Academic Writing" }
+          {
+            "code": "PHYS023",
+            "title": "Special Relativity",
+            "prereq": [],
+            "coreq": [],
+            "next": [15]
+          },
+          {
+            "code": "PHYS024",
+            "title": "Mechanics and Wave Motion",
+            "prereq": ["PHYS023"],
+            "coreq": [],
+            "next": [6, 17]
+          },
+          {
+            "code": "PHYS050",
+            "title": "Physics Laboratory",
+            "prereq": ["PHYS024"],
+            "coreq": ["PHYS051"],
+            "next": []
+          },
+          {
+            "code": "PHYS051",
+            "title": "Electromagnetic Theory and Optics",
+            "prereq": ["PHYS24"],
+            "coreq": ["MATH060"],
+            "next": []
+          },
+          {
+            "code": "WRIT001",
+            "title": "Introduction to Academic Writing",
+            "prereq": [],
+            "coreq": [],
+            "next": [7]
+          }
         ]
       },
       "post": {
         "courses": [
-          { "code": "BIOL023", "title": "Biology Laboratory" },
-          { "code": "BIOL052", "title": "Introduction to Biology" },
-          { "code": "CHEM023A", "title": "Chemistry in the Modern World I" },
-          { "code": "CHEM023B", "title": "Chemistry in the Modern World II" },
-          { "code": "CHEM024", "title": "Chemistry Laboratory" },
-          { "code": "CSCI005", "title": "Introduction to Computer Science" },
-          { "code": "ENR079", "title": "Introduction to Engineering Systems" },
-          { "code": "HSA010", "title": "Critical Inquiry" },
-          { "code": "MATH019", "title": "Calculus" },
-          { "code": "MATH073", "title": "Linear Algebra" },
-          { "code": "MATH082", "title": "Differential Equations" },
-          { "code": "PHYS023", "title": "Special Relativity" },
-          { "code": "PHYS024", "title": "Mechanics and Wave Motion" },
-          { "code": "PHYS050", "title": "Physics Laboratory" },
-          { "code": "PHYS051", "title": "Electromagnetic Theory and Optics" },
-          { "code": "WRIT001", "title": "Introduction to Academic Writing" }
+          {
+            "code": "BIOL023",
+            "title": "Biology Laboratory",
+            "prereq": ["CHEM024"],
+            "coreq": [],
+            "next": []
+          },
+          {
+            "code": "BIOL052",
+            "title": "Introduction to Biology",
+            "prereq": ["CSCI005", "CHEM023A"],
+            "coreq": [],
+            "next": []
+          },
+          {
+            "code": "CHEM023A",
+            "title": "Chemistry in the Modern World I",
+            "prereq": [],
+            "coreq": [],
+            "next": [1, 3]
+          },
+          {
+            "code": "CHEM023B",
+            "title": "Chemistry in the Modern World II",
+            "prereq": ["CHEM023A"],
+            "coreq": [],
+            "next": []
+          },
+          {
+            "code": "CHEM024",
+            "title": "Chemistry Laboratory",
+            "prereq": [],
+            "coreq": [],
+            "next": [0]
+          },
+          {
+            "code": "CSCI005",
+            "title": "Introduction to Computer Science",
+            "prereq": [],
+            "coreq": [],
+            "next": [1]
+          },
+          {
+            "code": "ENGR079",
+            "title": "Introduction to Engineering Systems",
+            "prereq": ["PHYS024"],
+            "coreq": ["MATH082"],
+            "next": []
+          },
+          {
+            "code": "HSA010",
+            "title": "Critical Inquiry",
+            "prereq": ["WRIT001"],
+            "coreq": [],
+            "next": []
+          },
+          {
+            "code": "MATH019",
+            "title": "Calculus",
+            "prereq": [],
+            "coreq": [],
+            "next": [9]
+          },
+          {
+            "code": "MATH073",
+            "title": "Linear Algebra",
+            "prereq": ["MATH019"],
+            "coreq": [],
+            "next": [10]
+          },
+          {
+            "code": "MATH082",
+            "title": "Differential Equations",
+            "prereq": ["MATH073"],
+            "coreq": [],
+            "next": []
+          },
+          {
+            "code": "PHYS023",
+            "title": "Special Relativity",
+            "prereq": [],
+            "coreq": [],
+            "next": [12]
+          },
+          {
+            "code": "PHYS024",
+            "title": "Mechanics and Wave Motion",
+            "prereq": ["PHYS023"],
+            "coreq": [],
+            "next": [6, 13, 14]
+          },
+          {
+            "code": "PHYS050",
+            "title": "Physics Laboratory",
+            "prereq": ["PHYS024"],
+            "coreq": ["PHYS051"],
+            "next": []
+          },
+          {
+            "code": "PHYS051",
+            "title": "Electromagnetic Theory and Optics",
+            "prereq": ["PHYS024"],
+            "coreq": ["MATH082"],
+            "next": []
+          },
+          {
+            "code": "WRIT001",
+            "title": "Introduction to Academic Writing",
+            "prereq": [],
+            "coreq": [],
+            "next": [7]
+          }
         ]
       }
     }
